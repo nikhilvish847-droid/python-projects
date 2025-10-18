@@ -1,16 +1,21 @@
 import random as r
 import string as s
+
+#making a random 3 letter word
 p="".join(r.choices(s.ascii_letters,k=3))
 q="".join(r.choices(s.ascii_letters,k=3))
-print(p)
+
+#creating a greeting function#
 def greet(fx):
     def mfx():
         print("hello WELCOME TO OUR CODE\n here you will be able to make your message encrypted.")
         fx()
         print("bye bye , see you next time")
     return mfx
+    
 @greet
-def code():
+#creating function to create a code language and to decode#
+def code_language():
     a=input("want to code or decode? :")
     if a=="code":
         c=[]
@@ -41,4 +46,6 @@ def code():
         print(c)
     else:
         raise ValueError("what a shit you have written")
-code()
+
+#calling a function
+code_language()
