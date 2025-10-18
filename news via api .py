@@ -1,6 +1,9 @@
+#importing a library which are going to use#
 import requests as r
-import bs4 as b
 import json
+
+topic=["politics","crime","cricket","trading"]
+#creating a greeting function#
 def greet(fx):
     def mfx():
         print("WELCOME TO NIKHIL NEWS, HERE YOU WILL GET DAILY REFRASHING NEWS!")
@@ -9,42 +12,23 @@ def greet(fx):
         print("BYE BYE SEE YOU NEXT TIME")
     return mfx
 @greet
+
+#creating a function to fetch news#
 def modify():
-    print("press 1 for news related to politics\npress 2 for news related to crime\npress 3 for news related to drugs\npress 4 for news related to trading")
-    option=int(input("enter your option: "))
-    match option:
-        case _ if option==1:
-            url="https://newsdata.io/api/1/latest?apikey=pub_d0d4187901f341549754d8eccd8c4ff9&q=nepal"
-            news=r.get(url)
-            news=json.loads(news.text)
-            for article in news["results"]: 
-                print(article["title"])
-                print(article["description"])
-                print("------------------------------------------------------------------")
-        case _ if option==2:
-            url="https://newsdata.io/api/1/latest?apikey=pub_d0d4187901f341549754d8eccd8c4ff9&q=politics&language=en&category=politics&country=in&timezone=Asia/Almaty"
-            news=r.get(url)
-            news=json.loads(news.text)
-            for article in news["results"]: 
-                print(article["title"])
-                print(article["description"])
-                print("------------------------------------------------------------------")
-        case _ if option==3:
-            url="https://newsdata.io/api/1/latest?apikey=pub_d0d4187901f341549754d8eccd8c4ff9&q=nepal"
-            news=r.get(url)
-            news=json.loads(news.text)
-            for article in news["results"]: 
-                print(article["title"])
-                print(article["description"])
-                print("------------------------------------------------------------------")
-        case _ if option==4:
-            url="https://newsdata.io/api/1/latest?apikey=pub_d0d4187901f341549754d8eccd8c4ff9&q=nepal"
-            news=r.get(url)
-            news=json.loads(news.text)
-            for article in news["results"]: 
-                print(article["title"])
-                print(article["description"])
-                print("------------------------------------------------------------------")
-        case _ :
-            print("invalid option")
+
+    # taking a topic as input from user
+    topic=input("news of which topic you want ?")
+    
+    #calling via api from news.api
+    url=f"https://newsdata.io/api/1/latest?apikey=pub_d0d4187901f341549754d8eccd8c4ff9&q={topic}&language=en&category={topic}&country=in&timezone=Asia/Almaty"
+    news=r.get(url)
+    news=json.loads(news.text)
+    
+    #extracting data from dictionary
+    for article in news["results"]: 
+        print(article["title"])
+        print(article["description"])
+        print("------------------------------------------------------------------")
+
+#calling function
 modify()
